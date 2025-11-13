@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="container my-4">
+    <header class="mb-4 pb-3 border-bottom">
+        <h1 class="display-6 mb-2">Contact Us</h1>
+        <p class="text-muted mb-0">
+            We are here to help. Reach out via email or phone, visit us in person, or send us a quick message using the enquiry form below.
+        </p>
+    </header>
+
+    <div class="row g-4">
+        <!-- Left: Details + Hours -->
+        <section class="col-lg-5">
+            <div class="card mb-3">
+                <div class="card-header fw-semibold">ABC Retailers — Details</div>
+                <div class="card-body">
+                    <address class="mb-3">
+                        <div class="fw-semibold">Physical Address</div>
+                        144 Peter Rd, Ruimsig, Roodepoort, 1724
+                    </address>
+
+                    <p class="mb-1">
+                        <span class="fw-semibold">Email:</span>
+                        <a href="mailto:ST10453511@imconnect.edu.za">ST10453511@imconnect.edu.za</a>
+                    </p>
+                    <p class="mb-0">
+                        <span class="fw-semibold">Contact Number:</span>
+                        <a href="tel:+27810603097">+27 81 060 3097</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header fw-semibold">Operational Hours</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Day</th>
+                                    <th scope="col">Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Monday</td><td>08:00 – 18:00</td></tr>
+                                <tr><td>Tuesday</td><td>08:00 – 18:00</td></tr>
+                                <tr><td>Wednesday</td><td>08:00 – 18:00</td></tr>
+                                <tr><td>Thursday</td><td>08:00 – 18:00</td></tr>
+                                <tr><td>Friday</td><td>08:00 – 18:00</td></tr>
+                                <tr><td>Saturday</td><td>09:00 – 16:00</td></tr>
+                                <tr><td>Sunday &amp; Public Holidays</td><td>Closed</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right: Map + Enquiry Form -->
+        <section class="col-lg-7">
+            <div class="card mb-3">
+                <div class="card-header fw-semibold">Find Us</div>
+                <div class="card-body">
+                    <div class="ratio ratio-4x3 rounded overflow-hidden border">
+                        <iframe title="ABC Retailers Location Map"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.477194704486!2d27.873874711964316!3d-26.083337158969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e959ef5277b96a7%3A0xc4aa15508f8e5e8c!2sIIE%20MSA!5e0!3m2!1sen!2sza!4v1759418675085!5m2!1sen!2sza"
+                                style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <a class="btn btn-outline-primary btn-sm mt-3"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/?api=1&query=144+Peter+Rd,+Ruimsig,+Roodepoort,+1724">
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header fw-semibold">Enquiry Form</div>
+                <div class="card-body">
+                    <p class="mb-3">Prefer to send us a quick message? Use the form below and we’ll get back to you.</p>
+                    <div class="rounded overflow-hidden border">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpwl59elvWsh_K6JGtPVyevDAPd5CZ1MoISG7K8ydHJvimDA/viewform?embedded=true"
+                                width="100%" height="1804" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                    <small class="text-muted d-block mt-2">This form is powered by Google Forms.</small>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="pt-3 mt-4 border-top">
+        <p class="small text-muted mb-0">
+            We aim to respond to enquiries within 1–2 business days.
+        </p>
+    </footer>
+</div>
+
+<style>
+    .card {
+        border-radius: 0.75rem;
+    }
+
+    .card-header {
+        background: #f8f9fa;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+</style>

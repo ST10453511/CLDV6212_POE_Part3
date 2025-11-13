@@ -1,0 +1,170 @@
+﻿@model ABCRetailers.Models.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4 text-primary">
+        <i class="fas fa-store"></i> Welcome to ABC Retailers!
+    </h1>
+    <p class="lead">Your one-stop shop for the best deals and latest products</p>
+</div>
+
+<!-- Action Buttons -->
+<div class="row mb-5 home-action">
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Customer" asp-action="Index"
+           class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+            <i class="fas fa-users fa-2x mb-2"></i>
+            <span>View Customers</span>
+            <small class="text-light">(@Model.CustomerCount total)</small>
+        </a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Product" asp-action="Index"
+           class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+            <i class="fas fa-box fa-2x mb-2"></i>
+            <span>View Products</span>
+            <small class="text-light">(@Model.ProductCount total)</small>
+        </a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Order" asp-action="Index"
+           class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+            <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+            <span>View Orders</span>
+            <small class="text-light">(@Model.OrderCount total)</small>
+        </a>
+    </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Upload" asp-action="Index"
+           class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+            <i class="fas fa-upload fa-2x mb-2"></i>
+            <span>Upload Files</span>
+            <small class="text-light">(Payment proofs)</small>
+        </a>
+    </div>
+</div>
+
+<!-- Featured Products -->
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">
+            <i class="fas fa-star text-warning"></i> Featured Products
+        </h2>
+
+        @if (Model.FeaturedProducts != null && Model.FeaturedProducts.Any())
+        {
+            <div class="row justify-content-center">
+                @foreach (var product in Model.FeaturedProducts)
+                {
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@product.ImageUrl" class="card-img-top" alt="@product.ProductName"
+                                     style="height: 150px; object-fit: cover;">
+                            }
+                            else
+                            {
+                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                                     style="height: 150px;">
+                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                </div>
+                            }
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="card-title text-center">@product.ProductName</h6>
+
+                                <!-- No code literal shown; same truncation behavior as Code 1 -->
+                                @{
+                                    var desc = product.Description ?? string.Empty;
+                                    var shown = desc.Length > 50 ? desc.Substring(0, 50) + "..." : desc;
+                                }
+                                <p class="card-text small text-muted flex-grow-1 text-center">@shown</p>
+
+                                <div class="mt-auto text-center">
+                                    <p class="card-text">
+                                        <strong class="text-success">@product.Price.ToString("C")</strong>
+                                    </p>
+                                    <small class="text-muted">Stock: @product.StockAvailable</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No products available yet.
+                <a asp-controller="Product" asp-action="Create" class="alert-link">Add your first product</a>!
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Customer Responses -->
+<section class="mt-5">
+    <h3 class="text-center mb-4">
+        <i class="fas fa-heart text-danger"></i> What Our Customers Say
+    </h3>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="border rounded-3 p-4 h-100 shadow-sm">
+                <p class="mb-2">
+                    “I have been shopping with ABC Retailers for almost a year now, and they have never disappointed me.
+                    The delivery is always fast, and the products arrive exactly as described.
+                    I recently ordered a Samsung S24 and received it within two days! I appreciate how professional their customer service team is.”
+                </p>
+                <div class="text-muted small">— Moegammad Alexander, Johannesburg</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded-3 p-4 h-100 shadow-sm">
+                <p class="mb-2">
+                    “ABC Retailers truly cares about their customers. I had a minor issue with my order, and they resolved it the same day with no hassle.
+                    The quality of their electronics is top notch, and I love the discounts they offer for repeat customers.
+                    You can tell they value trust and transparency.”
+                </p>
+                <div class="text-muted small">— Deen Margrose, Johannesburg</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border rounded-3 p-4 h-100 shadow-sm">
+                <p class="mb-2">
+                    “I was skeptical about buying online, but ABC Retailers changed my mind completely.
+                    From the simple checkout process to the fast, secure payment options everything was smooth.
+                    The Xbox I bought came perfectly packaged, and I even got a follow up message checking if I was satisfied.
+                    Five stars from me and I will definetly be ordering again.”
+                </p>
+                <div class="text-muted small">— Fazlin Margrose, Durban</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Badge Icons -->
+    <div class="text-center mt-5">
+        <h5 class="mb-3 text-muted">Trusted by thousands of happy shoppers</h5>
+        <div class="d-flex justify-content-center align-items-center flex-wrap gap-4">
+            <div>
+                <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                <p class="small mt-2 mb-0 text-muted">Secure Checkout</p>
+            </div>
+            <div>
+                <i class="fas fa-truck-fast fa-2x text-success"></i>
+                <p class="small mt-2 mb-0 text-muted">Fast & Reliable Delivery</p>
+            </div>
+            <div>
+                <i class="fas fa-credit-card fa-2x text-warning"></i>
+                <p class="small mt-2 mb-0 text-muted">Safe Payment Options</p>
+            </div>
+            <div>
+                <i class="fas fa-thumbs-up fa-2x text-info"></i>
+                <p class="small mt-2 mb-0 text-muted">Quality Guaranteed</p>
+            </div>
+        </div>
+    </div>
+</section>
+
