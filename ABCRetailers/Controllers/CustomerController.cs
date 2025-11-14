@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ABCRetailers.Models;
+﻿using ABCRetailers.Models;
 using ABCRetailers.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ABCRetailers.Controllers
 {
+    [Authorize] // ✔ Add this line to protect the entire controller
     public class CustomerController : Controller
     {
         private readonly IFunctionsApi _api;
+
         public CustomerController(IFunctionsApi api) => _api = api;
 
         public async Task<IActionResult> Index()
@@ -21,6 +24,7 @@ namespace ABCRetailers.Controllers
         public async Task<IActionResult> Create(Customer customer)
         {
             if (!ModelState.IsValid) return View(customer);
+
             try
             {
                 await _api.CreateCustomerAsync(customer);

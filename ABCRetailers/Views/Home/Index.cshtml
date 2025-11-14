@@ -10,83 +10,160 @@
     <p class="lead">Your one-stop shop for the best deals and latest products</p>
 </div>
 
-<!-- Action Buttons -->
-<div class="row mb-5 home-action">
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Customer" asp-action="Index"
-           class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-users fa-2x mb-2"></i>
-            <span>View Customers</span>
-            <small class="text-light">(@Model.CustomerCount total)</small>
-        </a>
+@* ===========================
+   QUICK ACTION BUTTONS
+   =========================== *@
+<div class="row mb-5 g-3">
+    <!-- Customers -->
+    <div class="col-md-3 col-sm-6">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Login" asp-action="Index"
+               class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-users fa-2x mb-2"></i>
+                <span>View Customers</span>
+                <small class="text-light">(@Model?.CustomerCount total)</small>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Customer" asp-action="Index"
+               class="btn btn-primary btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-users fa-2x mb-2"></i>
+                <span>View Customers</span>
+                <small class="text-light">(@Model?.CustomerCount total)</small>
+            </a>
+        }
     </div>
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Product" asp-action="Index"
-           class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-box fa-2x mb-2"></i>
-            <span>View Products</span>
-            <small class="text-light">(@Model.ProductCount total)</small>
-        </a>
+
+    <!-- Products -->
+    <div class="col-md-3 col-sm-6">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Login" asp-action="Index"
+               class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-box fa-2x mb-2"></i>
+                <span>View Products</span>
+                <small class="text-light">(@Model?.ProductCount total)</small>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Product" asp-action="Index"
+               class="btn btn-success btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-box fa-2x mb-2"></i>
+                <span>View Products</span>
+                <small class="text-light">(@Model?.ProductCount total)</small>
+            </a>
+        }
     </div>
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Order" asp-action="Index"
-           class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-shopping-cart fa-2x mb-2"></i>
-            <span>View Orders</span>
-            <small class="text-light">(@Model.OrderCount total)</small>
-        </a>
+
+    <!-- Orders -->
+    <div class="col-md-3 col-sm-6">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Login" asp-action="Index"
+               class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+                <span>View Orders</span>
+                <small class="text-light">(@Model?.OrderCount total)</small>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Order" asp-action="Index"
+               class="btn btn-warning btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+                <span>View Orders</span>
+                <small class="text-light">(@Model?.OrderCount total)</small>
+            </a>
+        }
     </div>
-    <div class="col-md-3 mb-3">
-        <a asp-controller="Upload" asp-action="Index"
-           class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center">
-            <i class="fas fa-upload fa-2x mb-2"></i>
-            <span>Upload Files</span>
-            <small class="text-light">(Payment proofs)</small>
-        </a>
+
+    <!-- Upload -->
+    <div class="col-md-3 col-sm-6">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Login" asp-action="Index"
+               class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-upload fa-2x mb-2"></i>
+                <span>Upload Files</span>
+                <small class="text-light">(Payment proofs)</small>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Upload" asp-action="Index"
+               class="btn btn-info btn-lg w-100 h-100 d-flex flex-column justify-content-center">
+                <i class="fas fa-upload fa-2x mb-2"></i>
+                <span>Upload Files</span>
+                <small class="text-light">(Payment proofs)</small>
+            </a>
+        }
     </div>
 </div>
 
-<!-- Featured Products -->
+@* ===========================
+   FEATURED PRODUCTS
+   =========================== *@
 <div class="row">
     <div class="col-12">
         <h2 class="mb-4">
             <i class="fas fa-star text-warning"></i> Featured Products
         </h2>
 
-        @if (Model.FeaturedProducts != null && Model.FeaturedProducts.Any())
+        @if (Model?.FeaturedProducts?.Any() == true)
         {
-            <div class="row justify-content-center">
-                @foreach (var product in Model.FeaturedProducts)
+            <div class="row g-3 justify-content-center">
+                @foreach (var product in Model.FeaturedProducts.Take(8))
                 {
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
                         <div class="card h-100 shadow-sm">
-                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            @if (!string.IsNullOrWhiteSpace(product.ImageUrl))
                             {
-                                <img src="@product.ImageUrl" class="card-img-top" alt="@product.ProductName"
-                                     style="height: 150px; object-fit: cover;">
+                                <img src="@product.ImageUrl"
+                                     class="home-product-img"
+                                     alt="@product.ProductName" />
                             }
                             else
                             {
                                 <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
-                                     style="height: 150px;">
+                                     style="height: 160px;">
                                     <i class="fas fa-image fa-3x text-muted"></i>
                                 </div>
                             }
-                            <div class="card-body d-flex flex-column">
-                                <h6 class="card-title text-center">@product.ProductName</h6>
 
-                                <!-- No code literal shown; same truncation behavior as Code 1 -->
-                                @{
-                                    var desc = product.Description ?? string.Empty;
-                                    var shown = desc.Length > 50 ? desc.Substring(0, 50) + "..." : desc;
-                                }
-                                <p class="card-text small text-muted flex-grow-1 text-center">@shown</p>
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="card-title text-center mb-2">@product.ProductName</h6>
+
+                                <p class="card-text small text-muted flex-grow-1 text-center">
+                                    @{
+                                        var desc = product.Description ?? string.Empty;
+                                        @(desc.Length > 60 ? desc.Substring(0, 60) + "..." : desc)
+                                    }
+                                </p>
 
                                 <div class="mt-auto text-center">
-                                    <p class="card-text">
-                                        <strong class="text-success">@product.Price.ToString("C")</strong>
+                                    <p class="mb-1">
+                                        <strong class="text-success">
+                                            @product.Price.ToString("C")
+                                        </strong>
                                     </p>
                                     <small class="text-muted">Stock: @product.StockAvailable</small>
+
+                                    <div class="mt-3">
+                                        @if (!User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-controller="Login" asp-action="Index"
+                                               class="btn btn-primary btn-sm">Login to Continue</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Cart" asp-action="Add"
+                                               asp-route-productId="@product.Id"
+                                               class="btn btn-success btn-sm">Add to Cart</a>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +231,7 @@
             </div>
             <div>
                 <i class="fas fa-truck-fast fa-2x text-success"></i>
-                <p class="small mt-2 mb-0 text-muted">Fast & Reliable Delivery</p>
+                <p class="small mt-2 mb-0 text-muted">Fast &amp; Reliable Delivery</p>
             </div>
             <div>
                 <i class="fas fa-credit-card fa-2x text-warning"></i>
@@ -167,4 +244,3 @@
         </div>
     </div>
 </section>
-

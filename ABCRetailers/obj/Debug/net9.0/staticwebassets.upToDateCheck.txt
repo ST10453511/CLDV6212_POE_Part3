@@ -61,6 +61,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\css\site.css
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\favicon.ico
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\js\site.js
@@ -122,4 +123,3 @@ C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\lib\jquery\dist\jquery.slim.js
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\lib\jquery\dist\jquery.slim.min.map
-C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Cloud Development\CLDV6212_POE_Part3\ABCRetailers\wwwroot\lib\jquery\LICENSE.txt

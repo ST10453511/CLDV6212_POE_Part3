@@ -1,0 +1,60 @@
+﻿@model List<ABCRetailers.Models.Order>
+
+<h2 class="mb-3">Manage Orders</h2>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Update Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Username</td>
+                <td>@order.ProductId</td>
+                <td>@order.Quantity</td>
+
+                <!-- Current Status -->
+                <td>@order.Status</td>
+
+                <!-- Update Status Form -->
+                <td>
+                    <form asp-controller="Order"
+                          asp-action="UpdateOrderStatus"
+                          method="post"
+                          class="d-flex gap-2 align-items-center">
+
+                        @Html.AntiForgeryToken()
+
+                        <!-- Order ID -->
+                        <input type="hidden" name="id" value="@order.Id" />
+
+                        <!-- Status Dropdown -->
+                        <select name="status" class="form-select form-select-sm w-auto">
+                            @foreach (var status in Enum.GetValues(typeof(OrderStatus)))
+                            {
+                                <option value="@status"
+                                        selected="@(status.Equals(order.Status))">
+                                    @status
+                                </option>
+                            }
+                        </select>
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                                class="btn btn-sm btn-primary">
+                            Update
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

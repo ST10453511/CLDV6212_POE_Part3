@@ -45,6 +45,27 @@ public class OrdersFunctions
         return HttpJson.Ok(req, ordered);
     }
 
+    [Function("Orders_ByCustomer")]
+    public async Task<HttpResponseData> ListByCustomer(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "orders/by-customer/{customerId}")]
+        HttpRequestData req,
+    string customerId)
+    {
+        var table = new TableClient(_conn, _ordersTable);
+        await table.CreateIfNotExistsAsync();
+
+        var items = new List<OrderDto>();
+        await foreach (var e in table.QueryAsync<OrderEntity>(x =>
+            x.PartitionKey == "Order" && x.CustomerId == customerId))
+        {
+            items.Add(Map.ToDto(e));
+        }
+
+        var ordered = items.OrderByDescending(o => o.OrderDateUtc).ToList();
+        return HttpJson.Ok(req, ordered);
+    }
+
+
     [Function("Orders_Get")]
     public async Task<HttpResponseData> Get(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "orders/{id}")] HttpRequestData req, string id)

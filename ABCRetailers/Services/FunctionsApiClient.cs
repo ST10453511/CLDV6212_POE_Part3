@@ -34,9 +34,16 @@ public class FunctionsApiClient : IFunctionsApi
         return data!;
     }
 
-    // ---------- Customers ----------
+    // ----------- Customers ------------
     public async Task<List<Customer>> GetCustomersAsync()
         => await ReadJsonAsync<List<Customer>>(await _http.GetAsync(CustomersRoute));
+
+    public async Task<Customer?> GetCustomerByUsernameAsync(string username)
+    {
+        var customers = await GetCustomersAsync();
+        return customers.FirstOrDefault(c =>
+            c.Username?.Equals(username, StringComparison.OrdinalIgnoreCase) == true);
+    }
 
     public async Task<Customer?> GetCustomerAsync(string id)
     {
@@ -121,6 +128,12 @@ public class FunctionsApiClient : IFunctionsApi
     public async Task<List<Order>> GetOrdersAsync()
     {
         var dtos = await ReadJsonAsync<List<OrderDto>>(await _http.GetAsync(OrdersRoute));
+        return dtos.Select(ToOrder).ToList();
+    }
+
+    public async Task<List<Order>> GetOrdersByCustomerIdAsync(string customerId)
+    {
+        var dtos = await ReadJsonAsync<List<OrderDto>>(await _http.GetAsync($"{OrdersRoute}?customerId={customerId}"));
         return dtos.Select(ToOrder).ToList();
     }
 

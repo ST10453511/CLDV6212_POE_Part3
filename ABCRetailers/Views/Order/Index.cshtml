@@ -154,17 +154,23 @@ else
             if (!confirm(`Are you sure you want to change the status to "${newStatus}"?`)) return;
 
             const token = document.querySelector('#__af input[name="__RequestVerificationToken"]').value;
-            const body  = new URLSearchParams({ id: orderId, newStatus: newStatus, __RequestVerificationToken: token });
+            const body  = new URLSearchParams({
+                id: orderId,
+                status: newStatus,
+                __RequestVerificationToken: token
+            });
 
             fetch('@Url.Action("UpdateOrderStatus", "Order")', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 body
             })
-            .then(r => r.json())
-            .then(data => {
-                if (data && data.success) location.reload();
-                else alert('Error: ' + (data && data.message ? data.message : 'Unknown error'));
+            .then(r => {
+                if (r.ok) {
+                    location.reload();
+                } else {
+                    alert('Error: failed to update status (HTTP ' + r.status + ').');
+                }
             })
             .catch(() => alert('An error occurred while updating the status'));
         }

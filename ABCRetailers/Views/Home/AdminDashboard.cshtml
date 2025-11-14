@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+    var username = User.Identity?.Name ?? "Administrator";
+}
+
+<div class="container mt-5">
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">
+            <i class="fas fa-user-shield"></i> Welcome, @username!
+        </h2>
+        <p class="text-muted mb-1">
+            You are logged in as an
+            <span class="badge bg-dark text-uppercase ms-1">Administrator</span>
+        </p>
+        <p class="text-muted">
+            Quick shortcuts to manage your customers, products and orders.
+        </p>
+    </div>
+
+    <!-- Main Admin Cards -->
+    <div class="row g-4 mb-5 text-center">
+        <!-- Manage Customers -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fas fa-users-cog fa-2x text-primary mb-3"></i>
+                    <h5 class="card-title">Manage Customers</h5>
+                    <p class="card-text text-muted">
+                        View, edit and maintain registered customer accounts to keep all user info accurate.
+                    </p>
+                    <a asp-controller="Customer" asp-action="Index"
+                       class="btn btn-outline-primary w-100 admin-card-btn">
+                        Go to Customers
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Products -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fas fa-boxes-stacked fa-2x text-success mb-3"></i>
+                    <h5 class="card-title">Manage Products</h5>
+                    <p class="card-text text-muted">
+                        Add, edit and remove products, prices and stock levels.
+                    </p>
+                    <a asp-controller="Product" asp-action="Index"
+                       class="btn btn-outline-success w-100 admin-card-btn">
+                        Go to Products
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View & Process Orders -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <i class="fas fa-clipboard-list fa-2x text-warning mb-3"></i>
+                    <h5 class="card-title">View & Process Orders</h5>
+                    <p class="card-text text-muted">
+                        Track order status, update progress and manage fulfilment.
+                    </p>
+                    <a asp-controller="Order" asp-action="Index"
+                       class="btn btn-outline-warning w-100 admin-card-btn">
+                        Go to Orders
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secondary Actions -->
+    <div class="list-group">
+        <a asp-controller="Upload" asp-action="Index"
+           class="list-group-item list-group-item-action">
+            <i class="fas fa-file-upload me-2"></i> View Uploaded Files
+        </a>
+
+        <a asp-controller="Home" asp-action="Privacy"
+           class="list-group-item list-group-item-action">
+            <i class="fas fa-shield-alt me-2"></i> Manage Privacy Policy
+        </a>
+
+        <a asp-controller="Home" asp-action="Contact"
+           class="list-group-item list-group-item-action">
+            <i class="fas fa-envelope me-2"></i> Manage Contact Page
+        </a>
+    </div>
+</div>
